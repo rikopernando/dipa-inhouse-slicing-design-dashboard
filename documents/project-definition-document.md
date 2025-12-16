@@ -1,57 +1,55 @@
-# 📄 Product Requirement Document (PRD) - Slicing Design Project
+## 📄 Product Requirement Document (PRD): StableVault Dashboard
 
-## I. Ringkasan Proyek
+Dashboard "StableVault" ini memiliki desain modern (dark mode) dengan fitur manajemen aset kripto yang cukup komprehensif, mulai dari pemantauan portofolio, transaksi swap, hingga staking.
 
-| **Atribut**               | **Detail**                                                                                                                                           |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Nama Proyek**           | Dipa Inhouse UI Slicing Project                                                                                                                      |
-| **Tujuan**                | Menerjemahkan desain statis menjadi antarmuka web yang **fungsional, _pixel-perfect_, dan responsif** menggunakan praktik terbaik _Senior Frontend_. |
-| **Deliverables**          | Kode sumber yang di-_push_ ke GitHub/GitLab dan _preview_ yang di-_deploy_ di Vercel/Netlify.                                                        |
-| **Tech Stack Wajib**      | Next.js (TypeScript), React, Tailwind CSS, ESLint/Prettier.                                                                                          |
-| **Kriteria Kunci Sukses** | **Pixel Perfection**, **Mobile-First Responsiveness**, **Smooth Animation**.                                                                         |
+### 1. Ringkasan Eksekutif
 
----
+StableVault adalah platform manajemen aset kripto yang memungkinkan pengguna untuk memantau performa portofolio secara real-time, melakukan penukaran aset (swap), mengelola aset yang di-stake, dan memantau tren pasar global.
 
-## II. Tugas Utama dan Kriteria Implementasi
+### 2. Target Pengguna
 
-Proyek ini terbagi menjadi tiga fokus utama: Struktur, Desain/Slicing, dan Animasi/Interaksi.
+- Investor kripto ritel yang memiliki aset di berbagai chain.
+- Trader yang membutuhkan akses cepat untuk penukaran aset.
+- Pengguna yang ingin memaksimalkan pendapatan pasif melalui staking.
 
-### 1. Struktur dan Kualitas Kode
+### 3. Fitur Utama (Berdasarkan Gambar)
 
-| **ID**   | **Tugas**               | **Kriteria Penilaian**                                                                                                                         |
-| -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **S-01** | **Arsitektur Komponen** | Wajib menggunakan prinsip **Atomic Design** yang ketat (Atom, Molecule, Organism, Template). Struktur folder harus mencerminkan pembagian ini. |
-| **S-02** | **Type Safety**         | Semua komponen (terutama Atom dan Molecule) harus memiliki **Props Interface** yang didefinisikan secara eksplisit menggunakan **TypeScript**. |
-| **S-03** | **Standar Kode**        | Kode harus bersih dan konsisten, mematuhi aturan **ESLint** dan format **Prettier** (termasuk `prettier-plugin-tailwindcss`).                  |
+- **Security Alert:** Status keamanan user (apakah 2FA sudah aktif atau belum)
+- **Portfolio Tracking:** Grafik performa historis (garis) dengan filter rentang waktu (1W, 1M, 6M, dll).
+- **Quick Access (Swap):** Widget cepat untuk menukar satu token ke token lain tanpa berpindah halaman.
+- **Asset Management:** Daftar aset yang dimiliki beserta nilai valuasi dan perubahan harganya.
+- **Portfolio Breakdown:** Visualisasi komposisi aset menggunakan _donut chart_.
+- **Staking Management:** Ringkasan estimasi pendapatan bulanan dan daftar aset yang sedang di-_stake_.
+- **Market Overview:** Daftar harga pasar _real-time_ untuk koin-koin populer.
+- **Community Feed:** Integrasi sosial untuk melihat opini pasar dari pengguna lain.
 
-### 2. Slicing dan Responsiveness (Mobile-First)
+### 4. Spesifikasi Teknis (Rekomendasi)
 
-| **ID**   | **Tugas**               | **Kriteria Penilaian**                                                                                                                                                                                                 |
-| -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **D-01** | **Pixel Perfection**    | Semua margin, padding, _font size_, dan skema warna harus sesuai 1:1 dengan desain yang diberikan.                                                                                                                     |
-| **D-02** | **Mobile View (Wajib)** | Menerapkan pendekatan **Mobile-First**. Tata letak harus berfungsi dengan baik pada lebar layar kecil (misalnya, 375px). _Breakpoint_ harus disesuaikan menggunakan utilitas responsif Tailwind (`sm:`, `md:`, `lg:`). |
-| **D-03** | **Navbar Responsif**    | Implementasikan _Header_ dengan navigasi yang berfungsi. Pada _mobile view_, tampilkan **Hamburger Menu** yang dapat dibuka/ditutup (menggunakan _state_ React).                                                       |
-| **D-04** | **Penggunaan Tailwind** | Gunakan utilitas Tailwind secara efisien dan hindari _inline style_ yang berlebihan. Konfigurasi `tailwind.config.js` jika ada warna atau _font_ kustom.                                                               |
-
-### 3. Interaksi dan Animasi
-
-| **ID**   | **Tugas**                         | **Kriteria Penilaian**                                                                                                                                                                                       |
-| -------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **A-01** | **Simple Animation**              | Terapkan **efek _hover_** halus pada tombol dan kartu (`transition`, `duration-300`, `ease-in-out`, `scale`).                                                                                                |
-| **A-02** | **Scroll Animation (Nilai Plus)** | Implementasikan efek **Scroll Reveal** (misalnya, _fade-in_ atau _slide-up_) pada bagian-bagian utama halaman saat pengguna menggulir. **Framer Motion** sangat disarankan untuk implementasi yang _smooth_. |
-| **A-03** | **Transisi UI**                   | Pastikan setiap perubahan _state_ UI (misalnya, membuka/menutup menu _mobile_) memiliki transisi yang halus.                                                                                                 |
+- **Frontend:** React.js atau Next.js (Tailwind CSS untuk styling).
+- **Charts:** Recharts atau Chart.js.
+- **Icons:** Lucide React atau FontAwesome.
+- **Architecture:** Lihat pada ARCHITECTURE.md
 
 ---
 
-## III. Langkah Kerja Prioritas
+## ✅ TODO List Pengembangan
 
-Mengingat Anda telah menyelesaikan _setup_ dasar (Tailwind, Next.js, TS), fokus harus langsung pada _slicing_ dan _responsiveness_.
+Saya membagi ini menjadi beberapa fase pengembangan agar lebih terstruktur.
 
-| **Langkah** | **Fokus Utama**           | **Durasi Estimasi** |
-| ----------- | ------------------------- | ------------------- |
-| **L1**      | **Slicing Layout Dasar**  | 20% Waktu           |
-| **L2**      | **Slicing Section Utama** | 40% Waktu           |
-| **L3**      | **Finishing & Animation** | 30% Waktu           |
-| **L4**      | **QA & Dokumentasi**      | 10% Waktu           |
-
----
+| ID         | Task / Fitur                              | Deskripsi                                                                                                                            | Status  |
+| ---------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------- |
+| **Fase 1** | **Setup & Layouting**                     |                                                                                                                                      |         |
+| 1.1        | Project Initialization                    | Setup Next.js, Tailwind CSS, dan Folder Structure.                                                                                   | DONE    |
+| 1.2        | Sidebar Navigation                        | Membuat navigasi samping (Dashboard, Assets, Market, dll).                                                                           | Pending |
+| 1.3        | Top Header                                | Membuat search bar, settings, dan profil user.                                                                                       | DONE    |
+| **Fase 2** | **Core Dashboard UI**                     |                                                                                                                                      |         |
+| 2.1        | Security Alert                            | Alert Status Keamanan dibagian atas dashboard page.                                                                                  | Pending |
+| 2.2        | Portfolio Line Chart / Portfolio Tracking | Grafik utama di bagian atas.                                                                                                         | Pending |
+| 2.3        | Quick Access                              | Membuat UI input penukaran token, selain itu terdapat 4 kategori (Swap, Deposit, Withdraw Transfer) Quick Access dan tombol preview. | Pending |
+| 2.4        | Assets & Breakdown                        | Membuat tabel aset dan Donut Chart komposisi portofolio.                                                                             | Pending |
+| 2.5        | Staking Management                        | Ringkasan estimasi pendapatan bulanan dan daftar aset yang sedang di-_stake_ sorting.                                                | pending |
+| 2.6        | Market table                              | list harga koin dengan filter dan fungsi sorting.                                                                                    | pending |
+| 2.7        | Community Feed                            | Card list horizontal scrollable, terdapat komentar, jumlah komentar, jumlah like dan tombol share                                    | pending |
+| **Fase 3** | **Finishing**                             |                                                                                                                                      |         |
+| 3.1        | Responsive Design                         | Memastikan dashboard rapi di tampilan tablet dan mobile.                                                                             | Pending |
+| 3.2        | Dark Mode Optimization                    | Memastikan kontras warna sesuai dengan gambar referensi.                                                                             | Pending |

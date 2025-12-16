@@ -5,8 +5,8 @@
 
 :root {
   /* Brand Gradients - Primary Colors */
-  --gradient-start: #2ea98d;
-  --gradient-end: #124338;
+  --gradient-start: #8addc6;
+  --gradient-end: #4fcba8;
 
   /* Custom color */
   --luxury-black-600: #2a3036;
@@ -23,7 +23,7 @@
   --secondary: #00c4bd;
   --secondary-foreground: #fafafa;
   --muted: #262626;
-  --muted-foreground: #a1a1a1;
+  --muted-foreground: #97a3b6;
   --accent: #404040;
   --accent-foreground: #fafafa;
   --destructive: #ff6467;
@@ -79,7 +79,7 @@
   --secondary: #00c4bd;
   --secondary-foreground: #fafafa;
   --muted: #262626;
-  --muted-foreground: #a1a1a1;
+  --muted-foreground: #97a3b6;
   --accent: #404040;
   --accent-foreground: #fafafa;
   --destructive: #ff6467;
@@ -184,7 +184,55 @@
 @layer utilities {
   /* Primary Gradient Backgrounds */
   .bg-gradient-primary {
-    background: linear-gradient(180deg, var(--gradient-start) -43.42%, var(--gradient-end) 99.17%);
+    background: radial-gradient(
+      54.77% 54.77% at 45.23% 0%,
+      var(--gradient-start) 0%,
+      var(--gradient-end) 100%
+    );
+  }
+
+  /* Primary Gradient Borders */
+  .border-gradient-primary {
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(var(--background), var(--background)),
+      linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* Alternative: Gradient border with radial (matches bg-gradient-primary exactly) */
+  .border-gradient-primary-radial {
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(var(--background), var(--background)),
+      radial-gradient(
+        54.77% 54.77% at 45.23% 0%,
+        var(--gradient-start) 0%,
+        var(--gradient-end) 100%
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  /* Primary Gradient Text */
+  .text-gradient-primary {
+    background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Alternative: Gradient text with radial (matches bg-gradient-primary exactly) */
+  .text-gradient-primary-radial {
+    background: radial-gradient(
+      54.77% 54.77% at 45.23% 0%,
+      var(--gradient-start) 0%,
+      var(--gradient-end) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 

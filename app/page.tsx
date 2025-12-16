@@ -1,11 +1,23 @@
 import { AppSidebar } from '@/components/app-sidebar';
-import { ChartAreaInteractive } from '@/components/chart-area-interactive';
-import { DataTable } from '@/components/data-table';
-import { SectionCards } from '@/components/section-cards';
+import { CommunityFeed } from '@/components/community-feed';
+import { MarketTable } from '@/components/market-table';
+import { MyStaking } from '@/components/my-staking';
+import { PortfolioBreakdown } from '@/components/portfolio-breakdown';
+import { PortfolioWithQuickAccess } from '@/components/portfolio-with-quick-access';
+import { SecurityAlertBanner } from '@/components/security-alert-banner';
 import { SiteHeader } from '@/components/site-header';
+import { YourAssets } from '@/components/your-assets';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-
-import data from './data.json';
+import { userAssets } from '@/lib/mock-data/assets';
+import { communityPosts } from '@/lib/mock-data/community';
+import { marketCoins } from '@/lib/mock-data/market';
+import {
+  portfolioBreakdown,
+  portfolioChartData,
+  portfolioSummaryData,
+} from '@/lib/mock-data/portfolio';
+import { securityAlertData } from '@/lib/mock-data/security';
+import { stakingItems } from '@/lib/mock-data/staking';
 
 export default function Page() {
   return (
@@ -21,14 +33,34 @@ export default function Page() {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
+          <div className="@container/main flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+            {/* Full-width Security Alert */}
+            <SecurityAlertBanner {...securityAlertData} />
+
+            {/* Portfolio Chart with Quick Access - Combined Card */}
+            <PortfolioWithQuickAccess
+              portfolioData={portfolioChartData}
+              summary={portfolioSummaryData}
+              activeTab="Swap"
+            />
+
+            {/* 2-Column Layout */}
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_400px] lg:gap-6">
+              {/* Left Column - Main Content */}
+              <div className="flex flex-col gap-4 lg:gap-6">
+                <YourAssets assets={userAssets} />
+                <MarketTable coins={marketCoins} />
               </div>
-              <DataTable data={data} />
+
+              {/* Right Column - Sidebar Widgets */}
+              <div className="flex flex-col gap-4 lg:gap-6">
+                <PortfolioBreakdown breakdown={portfolioBreakdown} />
+                <MyStaking stakingItems={stakingItems} />
+              </div>
             </div>
+
+            {/* Full-width Community Feed */}
+            <CommunityFeed posts={communityPosts} />
           </div>
         </div>
       </SidebarInset>

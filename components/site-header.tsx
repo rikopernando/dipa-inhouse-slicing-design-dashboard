@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { Bell, CircleFadingArrowUpIcon, SearchIcon, Settings } from 'lucide-react';
+import { Bell, SearchIcon, Settings } from 'lucide-react';
 
 export function SiteHeader() {
   return (
@@ -21,7 +21,7 @@ export function SiteHeader() {
           </InputGroup>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="outline" size="sm" className="hidden sm:flex">
+          <Button variant="secondary" size="sm" className="hidden sm:flex">
             <Settings className="text-grayscale-500" />
             Setting
           </Button>
