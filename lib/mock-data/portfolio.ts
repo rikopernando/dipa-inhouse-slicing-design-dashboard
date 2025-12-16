@@ -1,8 +1,4 @@
-import type {
-  BreakdownItem,
-  PortfolioDataPoint,
-  PortfolioSummary,
-} from '@/types/dashboard';
+import type { BreakdownItem, PortfolioDataPoint, PortfolioSummary } from '@/types/dashboard';
 
 export const portfolioSummaryData: PortfolioSummary = {
   totalValue: 94726.5,
@@ -12,11 +8,11 @@ export const portfolioSummaryData: PortfolioSummary = {
   timeframe: 'This Month',
 };
 
-// Generate realistic portfolio chart data for the past 6 months
+// Generate realistic portfolio chart data with high volatility
 function generatePortfolioData(): PortfolioDataPoint[] {
   const data: PortfolioDataPoint[] = [];
   const startDate = new Date('2024-07-01');
-  const endDate = new Date('2024-12-16');
+  const endDate = new Date('2025-12-16');
   const daysDiff = Math.floor((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
   let currentValue = 85000;
@@ -25,10 +21,25 @@ function generatePortfolioData(): PortfolioDataPoint[] {
     const date = new Date(startDate);
     date.setDate(startDate.getDate() + i);
 
-    // Add some realistic volatility
-    const volatility = (Math.random() - 0.5) * 2000;
-    const trend = (i / daysDiff) * 12000; // Upward trend
-    currentValue = 85000 + trend + volatility;
+    // High volatility: larger random swings (-3% to +3% daily)
+    const dailyChange = (Math.random() - 0.5) * 0.06; // -3% to +3%
+    currentValue = currentValue * (1 + dailyChange);
+
+    // Add some market "events" - random big swings
+    if (Math.random() > 0.95) {
+      // 5% chance of big event
+      const eventImpact = (Math.random() - 0.5) * 0.15; // -7.5% to +7.5%
+      currentValue = currentValue * (1 + eventImpact);
+    }
+
+    // Add wave pattern for more visual interest
+    const wave = Math.sin((i / daysDiff) * Math.PI * 4) * 3000;
+
+    // Overall upward trend
+    const trend = (i / daysDiff) * 15000;
+
+    // Combine all factors
+    currentValue = Math.max(70000, Math.min(110000, currentValue + wave + (trend / daysDiff) * 10));
 
     data.push({
       date: date.toISOString().split('T')[0],

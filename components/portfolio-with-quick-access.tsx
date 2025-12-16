@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import {
-  Area,
-  AreaChart,
   CartesianGrid,
+  Line,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -17,7 +17,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -181,47 +187,41 @@ export function PortfolioWithQuickAccess({
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={isMobile ? 250 : 350}>
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <defs>
-                  <linearGradient id="fillPortfolio" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
+              <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                <CartesianGrid vertical={false} strokeDasharray="8 8" className="stroke-muted" />
                 <XAxis
                   dataKey="date"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
-                  className="text-xs text-muted-foreground"
+                  className="text-primary text-xs"
                 />
                 <YAxis
                   tickLine={false}
                   axisLine={false}
                   tickMargin={8}
                   tickFormatter={(value) => `$${value / 1000}k`}
-                  className="text-xs text-muted-foreground"
+                  className="text-muted-foreground text-xs"
                 />
                 <Tooltip
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="rounded-lg border border-border bg-background p-2 shadow-sm">
+                        <div className="border-border bg-background rounded-lg border p-2 shadow-sm">
                           <div className="grid grid-cols-2 gap-2">
                             <div className="flex flex-col">
-                              <span className="text-[0.70rem] uppercase text-muted-foreground">
+                              <span className="text-muted-foreground text-[0.70rem] uppercase">
                                 Date
                               </span>
-                              <span className="font-bold text-foreground">
+                              <span className="text-foreground font-bold">
                                 {payload[0].payload.date}
                               </span>
                             </div>
                             <div className="flex flex-col">
-                              <span className="text-[0.70rem] uppercase text-muted-foreground">
+                              <span className="text-muted-foreground text-[0.70rem] uppercase">
                                 Value
                               </span>
-                              <span className="font-bold text-foreground">
+                              <span className="text-foreground font-bold">
                                 ${formatNumber(payload[0].value as number)}
                               </span>
                             </div>
@@ -232,14 +232,14 @@ export function PortfolioWithQuickAccess({
                     return null;
                   }}
                 />
-                <Area
+                <Line
                   type="monotone"
                   dataKey="value"
-                  stroke="hsl(var(--primary))"
+                  stroke="var(--primary)"
                   strokeWidth={2}
-                  fill="url(#fillPortfolio)"
+                  dot={false}
                 />
-              </AreaChart>
+              </LineChart>
             </ResponsiveContainer>
           </CardContent>
         </div>
@@ -301,13 +301,13 @@ export function PortfolioWithQuickAccess({
                 </div>
 
                 <div className="flex justify-center">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-muted">
-                    <IconArrowsUpDown className="size-4 text-muted-foreground" />
+                  <div className="bg-muted flex size-8 items-center justify-center rounded-full">
+                    <IconArrowsUpDown className="text-muted-foreground size-4" />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="to-token">You'll receive</Label>
+                  <Label htmlFor="to-token">You&apos;ll receive</Label>
                   <div className="flex gap-2">
                     <Select value={toToken.symbol} onValueChange={handleToTokenChange}>
                       <SelectTrigger className="w-[140px]">
@@ -353,8 +353,8 @@ export function PortfolioWithQuickAccess({
               </>
             )}
             {selectedTab !== 'Swap' && (
-              <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed border-border">
-                <p className="text-sm text-muted-foreground">{selectedTab} coming soon</p>
+              <div className="border-border flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
+                <p className="text-muted-foreground text-sm">{selectedTab} coming soon</p>
               </div>
             )}
           </CardContent>
