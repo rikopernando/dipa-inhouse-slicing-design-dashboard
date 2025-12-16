@@ -14,7 +14,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<'div'>) {
       data-slot="input-group"
       role="group"
       className={cn(
-        'group/input-group border-input dark:bg-input/30 relative flex w-full items-center rounded-[18px] border shadow-xs transition-[color,box-shadow] outline-none',
+        'bg-input group/input-group dark:bg-input/30 relative flex w-full items-center rounded-md border shadow-xs transition-[color,box-shadow] outline-none',
         'h-9 min-w-0 has-[>textarea]:h-auto',
 
         // Variants based on alignment.
@@ -41,8 +41,8 @@ const inputGroupAddonVariants = cva(
   {
     variants: {
       align: {
-        'inline-start': 'order-first pl-5 has-[>button]:ml-[-0.45rem] has-[>kbd]:ml-[-0.35rem]',
-        'inline-end': 'order-last pr-5 has-[>button]:mr-[-0.45rem] has-[>kbd]:mr-[-0.35rem]',
+        'inline-start': 'order-first pl-3 has-[>button]:ml-[-0.45rem] has-[>kbd]:ml-[-0.35rem]',
+        'inline-end': 'order-last pr-1.5 has-[>button]:mr-[-0.45rem] has-[>kbd]:mr-[-0.35rem]',
         'block-start':
           'order-first w-full justify-start px-5 pt-5 [.border-b]:pb-5 group-has-[>input]/input-group:pt-2.5',
         'block-end':
@@ -128,7 +128,7 @@ function InputGroupInput({ className, ...props }: React.ComponentProps<'input'>)
     <Input
       data-slot="input-group-control"
       className={cn(
-        'flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent',
+        'bg-input dark:bg-input flex-1 rounded-none border border-r-0 border-l-0 shadow-none focus-visible:ring-0',
         className,
       )}
       {...props}
@@ -141,7 +141,7 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<'texta
     <Textarea
       data-slot="input-group-control"
       className={cn(
-        'flex-1 resize-none rounded-none border-0 bg-transparent p-5 shadow-none focus-visible:ring-0 dark:bg-transparent',
+        'bg-input dark:bg-input flex-1 resize-none rounded-none border p-5 shadow-none focus-visible:ring-0',
         className,
       )}
       {...props}

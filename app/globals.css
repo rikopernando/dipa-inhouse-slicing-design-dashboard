@@ -4,6 +4,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Brand Gradients - Primary Colors */
+  --gradient-start: #2ea98d;
+  --gradient-end: #124338;
+
+  /* Custom color */
+  --luxury-black-600: #2a3036;
+  --grayscale-500: #677489;
+
   --background: #111316;
   --foreground: #fafafa;
   --card: #191d21;
@@ -29,6 +37,7 @@
   --chart-4: #25a17e;
   --chart-5: #17c8cc;
   --sidebar: #191d21;
+  --header: #191d21;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #1447e6;
   --sidebar-primary-foreground: #fafafa;
@@ -84,6 +93,7 @@
   --chart-4: #25a17e;
   --chart-5: #17c8cc;
   --sidebar: #191d21;
+  --header: #191d21;
   --sidebar-foreground: #ffffff;
   --sidebar-primary: #1447e6;
   --sidebar-primary-foreground: #fafafa;
@@ -139,6 +149,7 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
   --color-sidebar: var(--sidebar);
+  --color-header: var(--header);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
@@ -146,6 +157,10 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom color */
+  --color-luxury-black-600: var(--luxury-black-600);
+  --color-grayscale-500: var(--grayscale-500);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
@@ -167,6 +182,10 @@
 }
 
 @layer utilities {
+  /* Primary Gradient Backgrounds */
+  .bg-gradient-primary {
+    background: linear-gradient(180deg, var(--gradient-start) -43.42%, var(--gradient-end) 99.17%);
+  }
 }
 
 @layer base {

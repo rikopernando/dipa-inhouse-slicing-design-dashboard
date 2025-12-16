@@ -158,15 +158,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:p-1.5!">
-              <a href="#" className="flex items-center">
+              <a href="#" className="flex items-center p-0">
                 <Image
                   alt="StableVault"
-                  className="size-5!"
+                  className="mt-1 size-10!"
                   width={32}
                   height={32}
-                  src="/images/logo.webp"
+                  src="/images/logo.svg"
                 />
-                <span className="text-base">StableVault</span>
+                <span className="text-lg">StableVault</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>

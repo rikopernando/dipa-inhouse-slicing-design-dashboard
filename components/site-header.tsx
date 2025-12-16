@@ -1,30 +1,35 @@
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Button } from '@/components/ui/button';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import { Bell, CircleFadingArrowUpIcon, SearchIcon, Settings } from 'lucide-react';
 
 export function SiteHeader() {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+    <header className="bg-header flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mx-2 data-[orientation=vertical]:h-4"
-        />
-        <h1 className="text-base font-medium">Documents</h1>
+        <div className="flex items-center gap-6">
+          <h1 className="text-base font-medium">Dashboard</h1>
+          <InputGroup>
+            <InputGroupAddon>
+              <SearchIcon className="text-muted-foreground" />
+            </InputGroupAddon>
+            <InputGroupInput id="search" name="search" placeholder="Search here..." />
+            <InputGroupAddon align="inline-end">
+              <div className="bg-luxury-black-600 text-grayscale-500 rounded-xs px-[4px] py-[2px]">
+                ⌘+K
+              </div>
+            </InputGroupAddon>
+          </InputGroup>
+        </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
-            <a
-              href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="dark:text-foreground"
-            >
-              GitHub
-            </a>
+          <Button variant="outline" size="sm" className="hidden sm:flex">
+            <Settings className="text-grayscale-500" />
+            Setting
+          </Button>
+          <Button variant="ghost" size="icon">
+            <Bell />
           </Button>
         </div>
       </div>
     </header>
-  )
+  );
 }
