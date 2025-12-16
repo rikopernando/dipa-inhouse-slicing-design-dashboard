@@ -33,6 +33,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { formatNumber } from '@/lib/utils';
 import { availableTokens } from '@/lib/mock-data/tokens';
 import type { PortfolioDataPoint, PortfolioSummary, Token } from '@/types/dashboard';
+import { ChartCandlestick, ChartLine } from 'lucide-react';
 
 interface PortfolioWithQuickAccessProps {
   portfolioData: PortfolioDataPoint[];
@@ -47,6 +48,7 @@ interface PortfolioWithQuickAccessProps {
 }
 
 type TimeRange = '1W' | '1M' | '3M' | '6M' | '1Y' | 'All';
+type TypeChart = 'LINE' | 'CANDLESTICK';
 
 export function PortfolioWithQuickAccess({
   portfolioData,
@@ -54,6 +56,7 @@ export function PortfolioWithQuickAccess({
   activeTab = 'Swap',
   onPreview,
 }: PortfolioWithQuickAccessProps) {
+  const [typeChart, setTypeChart] = React.useState<TypeChart>('LINE');
   const [timeRange, setTimeRange] = React.useState<TimeRange>('3M');
   const [selectedTab, setSelectedTab] = React.useState(activeTab);
   const [fromToken, setFromToken] = React.useState<Token>(availableTokens[0]);
@@ -82,7 +85,7 @@ export function PortfolioWithQuickAccess({
       case '1Y':
         filterDate.setFullYear(today.getFullYear() - 1);
         break;
-      case 'All':
+      default:
         return portfolioData;
     }
 
@@ -122,51 +125,67 @@ export function PortfolioWithQuickAccess({
 
   return (
     <Card>
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_400px]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_387px]">
         {/* Left Side - Portfolio Chart */}
         <div className="flex flex-col">
-          <CardHeader>
+          <CardHeader className="mb-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex flex-col gap-1">
-                <CardDescription>Your Portfolio Value</CardDescription>
+                <CardDescription>Total portfolio</CardDescription>
                 <div className="flex items-center gap-2">
-                  <CardTitle className="text-3xl tabular-nums lg:text-4xl">
+                  <CardTitle className="text-xl font-medium tabular-nums lg:text-2xl">
                     ${formatNumber(summary.totalValue)}
                   </CardTitle>
-                  <Badge
-                    variant={summary.percentageChange >= 0 ? 'default' : 'destructive'}
-                    className="text-sm"
-                  >
-                    {summary.changeLabel}
+                  <Badge variant={summary.percentageChange >= 0 ? 'outline' : 'destructive'}>
+                    <p className="text-gradient-primary text-xs">{summary.percentageChangeLabel}</p>
                   </Badge>
                 </div>
+                <CardDescription>{summary.totalChangeLabel}</CardDescription>
               </div>
               {!isMobile ? (
-                <ToggleGroup
-                  type="single"
-                  value={timeRange}
-                  onValueChange={(value) => value && setTimeRange(value as TimeRange)}
-                  className="justify-start"
-                >
-                  <ToggleGroupItem value="1W" aria-label="1 Week" size="sm">
-                    1W
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="1M" aria-label="1 Month" size="sm">
-                    1M
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="3M" aria-label="3 Months" size="sm">
-                    3M
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="6M" aria-label="6 Months" size="sm">
-                    6M
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="1Y" aria-label="1 Year" size="sm">
-                    1Y
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="All" aria-label="All Time" size="sm">
-                    All
-                  </ToggleGroupItem>
-                </ToggleGroup>
+                <div className="flex gap-2">
+                  <ToggleGroup
+                    type="single"
+                    value={timeRange}
+                    spacing={1}
+                    onValueChange={(value) => value && setTimeRange(value as TimeRange)}
+                    className="justify-start"
+                  >
+                    <ToggleGroupItem value="All" aria-label="All Time" size="xs">
+                      All
+                    </ToggleGroupItem>
+
+                    <ToggleGroupItem value="1W" aria-label="1 Week" size="xs">
+                      1W
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="1M" aria-label="1 Month" size="xs">
+                      1M
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="3M" aria-label="3 Months" size="xs">
+                      3M
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="6M" aria-label="6 Months" size="xs">
+                      6M
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="1Y" aria-label="1 Year" size="xs">
+                      1Y
+                    </ToggleGroupItem>
+                  </ToggleGroup>
+                  <ToggleGroup
+                    type="single"
+                    value={typeChart}
+                    spacing={1}
+                    onValueChange={(value) => value && setTypeChart(value as TypeChart)}
+                    className="justify-start"
+                  >
+                    <ToggleGroupItem value="LINE" aria-label="LINE" size="xs">
+                      <ChartLine />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="CANDLESTICK" aria-label="CANDLESTICK" size="xs">
+                      <ChartCandlestick />
+                    </ToggleGroupItem>
+                  </ToggleGroup>
+                </div>
               ) : (
                 <Select
                   value={timeRange}
@@ -179,7 +198,6 @@ export function PortfolioWithQuickAccess({
                     <SelectItem value="3M">3 Months</SelectItem>
                     <SelectItem value="6M">6 Months</SelectItem>
                     <SelectItem value="1Y">1 Year</SelectItem>
-                    <SelectItem value="All">All Time</SelectItem>
                   </SelectContent>
                 </Select>
               )}
@@ -187,42 +205,70 @@ export function PortfolioWithQuickAccess({
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={isMobile ? 250 : 350}>
-              <LineChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                <CartesianGrid vertical={false} strokeDasharray="8 8" className="stroke-muted" />
+              <LineChart data={chartData} margin={{ top: 0, right: 0, left: -32, bottom: 0 }}>
+                <CartesianGrid vertical={false} strokeDasharray="6 6" className="stroke-accent" />
                 <XAxis
                   dataKey="date"
                   tickLine={false}
                   axisLine={false}
-                  tickMargin={8}
+                  tickMargin={12}
                   className="text-primary text-xs"
                 />
                 <YAxis
                   tickLine={false}
                   axisLine={false}
-                  tickMargin={8}
-                  tickFormatter={(value) => `$${value / 1000}k`}
-                  className="text-muted-foreground text-xs"
+                  tickFormatter={(value) => `${value / 1000}k`}
+                  className="text-accent-foreground text-xs"
                 />
                 <Tooltip
+                  cursor={{
+                    stroke: 'var(--accent)',
+                    strokeWidth: 2,
+                    strokeDasharray: '6 6',
+                  }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
+                      // Format date to "March 19, 2025"
+                      const dataPoint = payload[0].payload;
+                      const date = new Date(
+                        filterDataByTimeRange.find((d) => d.date === dataPoint.date)?.date ||
+                          new Date(),
+                      );
+                      const formattedDate = date.toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                      });
+
                       return (
-                        <div className="border-border bg-background rounded-lg border p-2 shadow-sm">
-                          <div className="grid grid-cols-2 gap-2">
-                            <div className="flex flex-col">
-                              <span className="text-muted-foreground text-[0.70rem] uppercase">
-                                Date
-                              </span>
-                              <span className="text-foreground font-bold">
-                                {payload[0].payload.date}
+                        <div className="border-border bg-popover rounded-lg border p-3 shadow-lg">
+                          <div className="flex flex-col gap-2">
+                            {/* Date Header */}
+                            <div className="text-foreground border-border pb-2 text-sm font-medium">
+                              {formattedDate}
+                            </div>
+
+                            {/* Portfolio Worth */}
+                            <div className="flex items-center justify-between gap-8">
+                              <div className="flex items-center gap-2">
+                                <div className="bg-primary size-2 rounded-full" />
+                                <span className="text-muted-foreground text-sm">
+                                  Portfolio&apos;s worth
+                                </span>
+                              </div>
+                              <span className="text-foreground text-sm font-semibold tabular-nums">
+                                ${formatNumber(payload[0].value as number)}
                               </span>
                             </div>
-                            <div className="flex flex-col">
-                              <span className="text-muted-foreground text-[0.70rem] uppercase">
-                                Value
-                              </span>
-                              <span className="text-foreground font-bold">
-                                ${formatNumber(payload[0].value as number)}
+
+                            {/* Top Movers */}
+                            <div className="flex items-center justify-between gap-8">
+                              <div className="flex items-center gap-2">
+                                <div className="bg-secondary size-2 rounded-full" />
+                                <span className="text-muted-foreground text-sm">Top movers</span>
+                              </div>
+                              <span className="text-foreground text-sm font-semibold">
+                                BTC & ETH
                               </span>
                             </div>
                           </div>
@@ -238,6 +284,12 @@ export function PortfolioWithQuickAccess({
                   stroke="var(--primary)"
                   strokeWidth={2}
                   dot={false}
+                  activeDot={{
+                    r: 6,
+                    fill: 'var(--primary)',
+                    stroke: 'var(--accent)',
+                    strokeWidth: 2,
+                  }}
                 />
               </LineChart>
             </ResponsiveContainer>

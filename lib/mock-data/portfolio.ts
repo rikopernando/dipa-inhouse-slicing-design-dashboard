@@ -3,8 +3,10 @@ import type { BreakdownItem, PortfolioDataPoint, PortfolioSummary } from '@/type
 export const portfolioSummaryData: PortfolioSummary = {
   totalValue: 94726.5,
   currency: 'USD',
-  percentageChange: 2.34,
-  changeLabel: '+2%',
+  percentageChange: 0.33,
+  totalChange: 2987,
+  percentageChangeLabel: '+0.3%',
+  totalChangeLabel: '+$2.987',
   timeframe: 'This Month',
 };
 

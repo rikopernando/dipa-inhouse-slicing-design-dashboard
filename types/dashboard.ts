@@ -22,9 +22,11 @@ export interface PortfolioDataPoint {
 
 export interface PortfolioSummary {
   totalValue: number;
+  totalChange: number;
   currency: string;
   percentageChange: number;
-  changeLabel: string;
+  percentageChangeLabel: string;
+  totalChangeLabel: string;
   timeframe: string;
 }
 

@@ -16,7 +16,7 @@
   --foreground: #fafafa;
   --card: #191d21;
   --card-foreground: #ffffff;
-  --popover: #262626;
+  --popover: #25292e;
   --popover-foreground: #fafafa;
   --primary: #2cc184;
   --primary-foreground: #171717;
@@ -24,7 +24,7 @@
   --secondary-foreground: #fafafa;
   --muted: #262626;
   --muted-foreground: #97a3b6;
-  --accent: #404040;
+  --accent: #2a3036;
   --accent-foreground: #fafafa;
   --destructive: #ff6467;
   --destructive-foreground: #fafafa;
@@ -72,7 +72,7 @@
   --foreground: #fafafa;
   --card: #191d21;
   --card-foreground: #ffffff;
-  --popover: #262626;
+  --popover: #25292e;
   --popover-foreground: #fafafa;
   --primary: #2cc184;
   --primary-foreground: #171717;
@@ -80,7 +80,7 @@
   --secondary-foreground: #fafafa;
   --muted: #262626;
   --muted-foreground: #97a3b6;
-  --accent: #404040;
+  --accent: #2a3036;
   --accent-foreground: #fafafa;
   --destructive: #ff6467;
   --destructive-foreground: #fafafa;
@@ -290,6 +290,11 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  /* Custom Font Families */
+  .font-inter-tight {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
   }
 
   /* Animation Utility Classes */
