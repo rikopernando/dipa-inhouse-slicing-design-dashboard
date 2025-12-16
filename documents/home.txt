@@ -1,0 +1,182 @@
+
+THIS IS THE LAYOUT OF HOME TEXT, ON THIS FILE I WILL GIVE SKETSA OF THE LAYOUT OF HOME PAGE, I WILL SPLIT INTO A COUPLE OF SECTION
+
+1. SECTION HEADER
+________________________________________________________________________________________________________________________________________
+|   LOGO                      Platform    Solutions   Resources   Pricing                                              Login  SignUp    |
+|_______________________________________________________________________________________________________________________________________|
+
+
+NOTES: 
+  - Solutions Menu is dropdown
+  - height: 84;
+  - border-bottom-width: 1px;
+  - Put Menu in the center of header
+  - use Logo from public/images/logo.webp
+  - Style Button SignUp 
+    - background: linear-gradient(180.97deg, #93D2FF -43.42%, #0542FC 99.17%);
+    - border: 1px solid;
+    - border-image-source: linear-gradient(180deg, #0542FC 0%, #3567FD 100%);
+    - box-shadow: 0px 2px 1px 0px #FFFFFF3D inset;
+    - border-radius: 100px;
+    - border-width: 1px;
+  - Style Button  Login (Same Like SignUp Menu), but have little different, different variant
+    - background-color: transparent;
+    - border: 1px solid #DDE3EE
+  - for the background color of SignUp button, set it to primary color of this page. make it color pallete
+
+
+2. HERO SECTION
+
+________________________________________________________________________________________________________________________________________
+|                                                                                                                                       |
+|                                                                                                                                       |
+|                                                                                                                                       |
+|                                                                                                                                       |
+|         AI Solution                                                                                                                   |
+|         Turn Workflow Into
+|         AI agent automations.                                                       [hero image -> hero-03]                           |
+|
+|         Powerful and production-ready, our cloud platform has                                                                         |
+|         the solutions you need to succeed.                                                                                            |
+
+|         Get Started >
+|                                                                                                                                       |
+|                                                   [hero image -> hero-02]
+|                                                                                                                                       |
+|                                                                                                                                       |
+|         [hero image -> hero-01]
+|                                                                                                                                       |
+|                                                                                                                                       |
+|                                                                                                                                       |
+|                                                                                                                                       |
+|________________________________________________________________________________________________________________________________________
+
+NOTES:
+  - set background to background: linear-gradient(180deg, #FFFFFF 0%, #E6EEFF 100%);.
+  - put the css background into global css
+  - beside background image, section hero have dor circular background patterns
+
+3.  BRAND SECTION
+________________________________________________________________________________________________________________________
+|                               |                   |                     |                     |                       |
+|    Trusted by 100+ world's    |    ebay Logo      |    Expedia Logo     |   DocuSign Logo     |    Phantom Logo       |
+|    best brand                 |                   |                     |                     |                       |
+|                               |                   |                     |                     |                       |
+_________________________________________________________________________________________________________________________
+
+
+4. TOOLKIT SECTION
+
+
+_______________________________________________________________________________________________________________________________________
+|                                                                                                                                     |
+|                                                                                                                                     |
+|       _____________________________
+|       |                            |                                        TOOLKIT                                                 |
+|       |                           |                                         Complete toolkit for AI                                 |
+|       | Put some images here      |                                         automation                                              |
+|       |                           |
+|       |                                                                     [icon chat] AI Chatbots                                 |
+|       |                           |                                         Powerful and production-ready, our cloud platform       |
+|       |                           |                                         has the solutions you need to succeed.                  |
+|       |                           |                                         _________________________________________________
+|       |                           |                                         [icon Workflow] Workflow
+|       |                           |                                         _________________________________________________
+|       |                           |                                         [icon Table] Table
+|       |                           |                                         _________________________________________________
+|       |                           |                                         [icon Interfaces] Interfaces
+|       |                           |                                         _________________________________________________
+|        _____________________________
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+_______________________________________________________________________________________________________________________________________
+
+NOTES:
+1. Right content is accordion
+2. left content is content image from selected accordion
+
+4. enterprise SECTION
+
+_______________________________________________________________________________________________________________________________________
+|                                                                                                                                     |
+|                                                                                                                                     |
+|       AI + AUTOMATIONS                                                                                                              |
+|       enterprise-ready                                                                                                               |
+|       automation in seconds                                                                                                          |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|       __________________________________________________________           __________________________________________________        |
+|       |                                                           |        |                                                |        |
+|       |    AI for the whole team                                  |        |                                                |        |
+|       |    Bring workflow automation and AI to the entire         |        |                                                |        |
+|       |    organization with apps, chatbots, and integrations.    |        |                                                |         |
+|       |                                                           |        |            [security enterprise image]         |         |
+|       |                                                           |        |                                                |        |
+|       |     [                                                     |        |                                                | 
+|       |        Put image on here                                  |        |                                                 |       |
+|       |        => images/enterprise/ai-chabot-enterprise.webp     |        |     enterprise security                        |
+|       |      ]                                                    |        |                                                |        |
+|       |                                                           |        |     Keep data safe with best‑in‑class security |        |
+|       | [at the bottom of this card, put enterprise vector image] |        |     protocols and AI guardrails.               |       |
+|       |___________________________________________________________         |________________________________________________|       ||
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+|                                                                                                                                     |
+_______________________________________________________________________________________________________________________________________
+
+
+5. PRICE SECTION
+______________________________________________________________________________________________________________________________________________________
+|                                                                                                                                                     |
+|                                                     PRICING                                                                                         |
+|                                                Start for free                                                                                       |
+|                                                Get used to winning                                                                                  |
+|                                                                                                                                                     |
+|                                                                                                                                                     |
+|                                                Monthly [Switch] Annual [10% off]                                                                    |
+|                                                                                                                                                      |
+|             ________________________________________________________                 ________________________________________________________       | 
+|            |                                                       |                 |                                                       |      |
+|            |  Basic            Kickstart your product research in  |                 |  Enterprise        Fuel your product workflow with    |      |                                   
+|            |                   your bussiness at no cost           |                 |                    more advanced research.            |      | 
+|            |                                                       |                 |                                                       |       |
+|            |                                                       |                 |                                                       |       |
+|            |  $0/month         [Current Plan]                       |                | $12/month          [Upgrade Now]                      |       |
+|            |  ___________________________________________________  |                 |  _________________________________________________    |       |
+|            |                                                       |                 |                                                       |
+|            |  [Checked] 25 Users                                   |                 |  [Checked] Unlimited workspace                        |       |
+|            |  [Checked] Email and live chat support                |                 |  [Checked] Advanced admin permissions and app controls|       |
+|            |  AI power-ups                                         |                 |  [Checked] Annual task limits                         |       |
+|            |_______________________________________________________|                 |_______________________________________________________|       |                                                            |
+|                                                                                                                                                       |
+|                                                                                                                                                       |
+|                                                                                                                                                       |
+|                                                                                                                                                       |
+|                                                                                                                                                       |
+_________________________________________________________________________________________________________________________________________________________
+
+6. FOOTER SECTION
+__________________________________________________________________________________________________________________________________________
+|                                                                                                                                         |
+|                                                                                                                                         |
+|     Platform                Solutions                Resources          Company           Subscribe                                     |
+|                                                                                                                                         |
+|     Meet the platform      By product                Blog              About Us           [Your email      ->]                          |
+|     Storyboard             Security                  Case studies      Contact                                                          |
+|     Cases                  Partners                  Library           Sustainability     Follow Us   [twitter] [LinkeIdn] [facebook]    |
+|     Workbench              Professional services                       Career                                                           |
+|     Pricing                                                                                                                             |
+|                                                                                                                                         |
+|                                                                                                                                         |
+__________________________________________________________________________________________________________________________________________|
+|                                                                                                                                         |
+|    ©2025 Monievo Technology, Inc.                     [LOGO]                         Privacy Policy   Terms of use   Disclosure         |
+__________________________________________________________________________________________________________________________________________|
