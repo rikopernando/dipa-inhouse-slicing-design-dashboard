@@ -109,7 +109,7 @@ export const SwapForm = memo(function SwapForm({
         </CardContent>
       </Card>
 
-      <Button onClick={handlePreview} className="w-full">
+      <Button onClick={handlePreview} className="mt-3 w-full">
         Preview
       </Button>
     </div>

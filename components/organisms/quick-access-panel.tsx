@@ -42,7 +42,7 @@ export const QuickAccessPanel = memo(function QuickAccessPanel({
           value={selectedTab}
           spacing={1}
           onValueChange={handleTabChange}
-          className="w-full justify-center"
+          className="justify-start"
         >
           <ToggleGroupItem value="Swap" aria-label="Swap" size="xs">
             <ArrowRightLeft />

@@ -1,35 +1,28 @@
 'use client';
 
-import * as React from 'react';
+import { useMemo, useRef, useState } from 'react';
 
-import { TokenIcon } from '@/components/atoms/token-icon';
-import { Badge } from '@/components/ui/badge';
+import { StakingCard } from '@/components/atoms/staking-card';
+import { HorizontalScrollButtons } from '@/components/molecules/horizontal-scroll-buttons';
+import { StakingListItem } from '@/components/molecules/staking-list-item';
+import { StakingFilterControls } from '@/components/molecules/staking-filter-controls';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { formatNumber } from '@/lib/utils';
-import type { StakingItem } from '@/types/dashboard';
+import { Separator } from '@/components/ui/separator';
+import type { MyStakingItem, StakingItem } from '@/types/dashboard';
 
 interface MyStakingProps {
+  myStakingItems: MyStakingItem[];
   stakingItems: StakingItem[];
-  sortBy?: 'apy' | 'amount' | 'status';
   onSortChange?: (sort: string) => void;
 }
 
-type FilterTab = 'All' | 'Staked' | 'History';
-type SortOption = 'apy' | 'amount' | 'status';
+type FilterTab = 'All' | 'Staked' | 'Earnings' | 'History';
 
-export function MyStaking({ stakingItems, sortBy = 'apy' }: MyStakingProps) {
-  const [activeTab, setActiveTab] = React.useState<FilterTab>('All');
-  const [sortOption, setSortOption] = React.useState<SortOption>(sortBy);
+export function MyStaking({ myStakingItems, stakingItems }: MyStakingProps) {
+  const [activeTab, setActiveTab] = useState<FilterTab>('All');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const filteredItems = React.useMemo(() => {
+  const filteredItems = useMemo(() => {
     let items = [...stakingItems];
 
     // Filter by tab
@@ -39,82 +32,43 @@ export function MyStaking({ stakingItems, sortBy = 'apy' }: MyStakingProps) {
       items = items.filter((item) => item.status === 'Unstaked');
     }
 
-    // Sort
-    items.sort((a, b) => {
-      switch (sortOption) {
-        case 'apy':
-          return b.apy - a.apy;
-        case 'amount':
-          return b.usdValue - a.usdValue;
-        case 'status':
-          return a.status.localeCompare(b.status);
-        default:
-          return 0;
-      }
-    });
-
     return items;
-  }, [stakingItems, activeTab, sortOption]);
+  }, [stakingItems, activeTab]);
 
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>My Staking</CardTitle>
-        <Select value={sortOption} onValueChange={(value) => setSortOption(value as SortOption)}>
-          <SelectTrigger className="w-[120px]">
-            <SelectValue placeholder="Sort by" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="apy">APY</SelectItem>
-            <SelectItem value="amount">Amount</SelectItem>
-            <SelectItem value="status">Status</SelectItem>
-          </SelectContent>
-        </Select>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as FilterTab)}>
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="All">All</TabsTrigger>
-            <TabsTrigger value="Staked">Staked</TabsTrigger>
-            <TabsTrigger value="History">History</TabsTrigger>
-          </TabsList>
-        </Tabs>
+      <CardContent className="flex flex-col gap-6 px-0">
+        {/* Horizontal scrollable card section */}
+        <div className="relative">
+          <div
+            ref={scrollContainerRef}
+            className="no-scrollbar ml-0 flex gap-4 overflow-x-auto px-4"
+          >
+            {myStakingItems.map((item) => (
+              <StakingCard key={`card-${item.id}`} item={item} />
+            ))}
+          </div>
+          <HorizontalScrollButtons containerRef={scrollContainerRef} />
+        </div>
 
-        <div className="flex flex-col gap-2">
-          {filteredItems.map((item) => (
-            <div
-              key={item.id}
-              className="border-border hover:bg-accent flex items-center justify-between rounded-lg border p-3 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <TokenIcon symbol={item.token} icon={item.tokenIcon} size="md" />
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-2">
-                    <span className="font-medium">{item.token}</span>
-                    <Badge
-                      variant={
-                        item.status === 'Staked'
-                          ? 'default'
-                          : item.status === 'Unstaked'
-                            ? 'secondary'
-                            : 'outline'
-                      }
-                      className="text-xs"
-                    >
-                      {item.status}
-                    </Badge>
-                  </div>
-                  <div className="text-muted-foreground flex items-center gap-2 text-sm">
-                    <span className="tabular-nums">{item.apy}% APY</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col items-end gap-1">
-                <span className="font-semibold tabular-nums">${formatNumber(item.usdValue)}</span>
-                <span className="text-muted-foreground text-sm">{item.amount}</span>
-              </div>
-            </div>
-          ))}
+        <div className="px-4">
+          <Separator />
+
+          <StakingFilterControls
+            activeTab={activeTab}
+            onTabChange={(tab) => setActiveTab(tab)}
+            className="mt-6 mb-4"
+          />
+
+          {/* Row list view */}
+          <div className="flex flex-col gap-2">
+            {filteredItems.map((item) => (
+              <StakingListItem key={item.id} item={item} />
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

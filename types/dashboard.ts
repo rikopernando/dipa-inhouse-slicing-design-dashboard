@@ -42,9 +42,21 @@ export interface StakingItem {
   token: string;
   tokenIcon: string;
   apy: number;
+  name: string;
   status: 'Staked' | 'Unstaked' | 'Reward';
   amount: string;
+  date: string;
+  percentage: number;
   usdValue: number;
+}
+
+export interface MyStakingItem {
+  id: string;
+  token: string;
+  tokenIcon: string;
+  amount: number;
+  percentage: number;
+  monthlyEarn: number;
 }
 
 export interface CoinData {

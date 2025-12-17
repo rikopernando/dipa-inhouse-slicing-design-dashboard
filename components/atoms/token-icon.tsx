@@ -27,7 +27,7 @@ export function TokenIcon({ symbol, icon, size = 'md', className }: TokenIconPro
     return (
       <div
         className={cn(
-          'from-primary to-secondary flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br font-semibold text-white',
+          'from-primary to-secondary flex shrink-0 items-center justify-center rounded-full bg-linear-to-br font-semibold text-white',
           size === 'xs' && 'size-4 text-xs',
           size === 'sm' && 'size-6 text-xs',
           size === 'md' && 'size-8 text-sm',

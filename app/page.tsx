@@ -17,7 +17,7 @@ import {
   portfolioSummaryData,
 } from '@/lib/mock-data/portfolio';
 import { securityAlertData } from '@/lib/mock-data/security';
-import { stakingItems } from '@/lib/mock-data/staking';
+import { myStakingItems, stakingItems } from '@/lib/mock-data/staking';
 
 export default function Page() {
   return (
@@ -45,7 +45,7 @@ export default function Page() {
             />
 
             {/* 2-Column Layout */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_400px]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_387px]">
               {/* Left Column - Main Content */}
               <div className="flex flex-col gap-4">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -57,7 +57,7 @@ export default function Page() {
 
               {/* Right Column - Sidebar Widgets */}
               <div className="flex flex-col gap-4">
-                <MyStaking stakingItems={stakingItems} />
+                <MyStaking myStakingItems={myStakingItems} stakingItems={stakingItems} />
                 {/* Full-width Community Feed */}
                 <CommunityFeed posts={communityPosts} />
               </div>

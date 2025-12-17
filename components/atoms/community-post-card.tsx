@@ -2,7 +2,7 @@ import { IconHeart, IconMessage, IconShare } from '@tabler/icons-react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import type { CommunityPost } from '@/types/dashboard';
 
 interface CommunityPostCardProps {
@@ -22,13 +22,13 @@ export function CommunityPostCard({ post, onLike, onComment, onShare }: Communit
         </Avatar>
         <div className="flex flex-col">
           <span className="text-sm font-semibold">{post.author.name}</span>
-          <span className="text-xs text-muted-foreground">{post.timestamp}</span>
+          <span className="text-muted-foreground text-xs">{post.timestamp}</span>
         </div>
       </CardHeader>
       <CardContent className="pb-3">
-        <p className="line-clamp-3 text-sm text-muted-foreground">{post.content}</p>
+        <p className="text-muted-foreground line-clamp-3 text-sm">{post.content}</p>
       </CardContent>
-      <CardFooter className="flex items-center justify-between border-t pt-3">
+      <div className="flex items-center justify-between border-t pt-3">
         <Button
           variant="ghost"
           size="sm"
@@ -50,7 +50,7 @@ export function CommunityPostCard({ post, onLike, onComment, onShare }: Communit
         <Button variant="ghost" size="sm" onClick={() => onShare?.(post.id)}>
           <IconShare className="size-4" />
         </Button>
-      </CardFooter>
+      </div>
     </Card>
   );
 }
