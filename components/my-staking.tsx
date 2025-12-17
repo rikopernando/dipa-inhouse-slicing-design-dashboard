@@ -5,7 +5,13 @@ import * as React from 'react';
 import { TokenIcon } from '@/components/atoms/token-icon';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatNumber } from '@/lib/utils';
 import type { StakingItem } from '@/types/dashboard';
@@ -78,7 +84,7 @@ export function MyStaking({ stakingItems, sortBy = 'apy' }: MyStakingProps) {
           {filteredItems.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between rounded-lg border border-border p-3 transition-colors hover:bg-accent"
+              className="border-border hover:bg-accent flex items-center justify-between rounded-lg border p-3 transition-colors"
             >
               <div className="flex items-center gap-3">
                 <TokenIcon symbol={item.token} icon={item.tokenIcon} size="md" />
@@ -98,14 +104,14 @@ export function MyStaking({ stakingItems, sortBy = 'apy' }: MyStakingProps) {
                       {item.status}
                     </Badge>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground flex items-center gap-2 text-sm">
                     <span className="tabular-nums">{item.apy}% APY</span>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col items-end gap-1">
                 <span className="font-semibold tabular-nums">${formatNumber(item.usdValue)}</span>
-                <span className="text-sm text-muted-foreground">{item.amount}</span>
+                <span className="text-muted-foreground text-sm">{item.amount}</span>
               </div>
             </div>
           ))}

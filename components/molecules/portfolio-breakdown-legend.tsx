@@ -13,7 +13,7 @@ export const PortfolioBreakdownLegend = memo(function PortfolioBreakdownLegend({
   className,
 }: PortfolioBreakdownLegendProps) {
   return (
-    <div className={`flex w-full flex-row justify-between ${className || ''}`}>
+    <div className={`flex w-full flex-row justify-between px-4 ${className || ''}`}>
       {breakdown.map((item) => (
         <div key={item.name} className="flex flex-col items-center gap-2">
           <div className="flex items-center gap-2">
