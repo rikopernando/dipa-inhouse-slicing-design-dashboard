@@ -58,19 +58,25 @@ export const portfolioBreakdown: BreakdownItem[] = [
   {
     name: 'BTC',
     value: 45000,
-    percentage: 47.5,
-    color: '#2cc184',
+    percentage: 45,
+    color: '#2CC184',
   },
   {
     name: 'ETH',
     value: 30000,
-    percentage: 31.7,
-    color: '#00c4bd',
+    percentage: 30,
+    color: '#00C4BD',
+  },
+  {
+    name: 'ADA',
+    value: 15000,
+    percentage: 15,
+    color: '#118482',
   },
   {
     name: 'Others',
     value: 19726.5,
-    percentage: 20.8,
-    color: '#17c8cc',
+    percentage: 10,
+    color: '#374343',
   },
 ];
