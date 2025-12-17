@@ -14,13 +14,16 @@ export function CommunityFeed({ posts }: CommunityFeedProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <Card className="bg-input">
+    <Card>
       <CardHeader>
         <CardTitle>Community</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col gap-6 px-0">
         <div className="relative">
-          <div ref={scrollContainerRef} className="no-scrollbar flex gap-4 overflow-x-auto pb-4">
+          <div
+            ref={scrollContainerRef}
+            className="no-scrollbar ml-0 flex gap-4 overflow-x-auto px-4"
+          >
             {posts.map((post) => (
               <CommunityPostCard key={post.id} post={post} />
             ))}
