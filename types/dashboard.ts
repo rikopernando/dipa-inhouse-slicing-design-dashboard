@@ -84,3 +84,19 @@ export interface SwapData {
   toAmount: string;
   exchangeRate: string;
 }
+
+/**
+ * Chart and component types
+ */
+export type TimeRange = '1W' | '1M' | '3M' | '6M' | '1Y' | 'All';
+export type TypeChart = 'LINE' | 'CANDLESTICK';
+export type QuickAccessTab = 'Swap' | 'Deposit' | 'Withdraw' | 'Transfer';
+
+/**
+ * Event handler types
+ */
+export type TimeRangeChangeHandler = (value: TimeRange) => void;
+export type TypeChartChangeHandler = (value: TypeChart) => void;
+export type TokenChangeHandler = (symbol: string) => void;
+export type AmountChangeHandler = (amount: string) => void;
+export type SwapPreviewHandler = (data: SwapData) => void;
