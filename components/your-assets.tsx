@@ -1,24 +1,13 @@
 'use client';
 
 import { Fragment } from 'react';
-import { IconArrowUpRight } from '@tabler/icons-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemMedia,
-  ItemSeparator,
-  ItemTitle,
-} from '@/components/ui/item';
-import type { Asset } from '@/types/dashboard';
+import { ItemGroup, ItemSeparator } from '@/components/ui/item';
 import { Typography } from '@/components/atoms/typography';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cn, formatNumber } from '@/lib/utils';
+import { AssetListItem } from '@/components/molecules/asset-list-item';
+import type { Asset } from '@/types/dashboard';
 
 interface YourAssetsProps {
   assets: Asset[];
@@ -47,41 +36,7 @@ export function YourAssets({ assets, onSeeAll }: YourAssetsProps) {
           <ItemGroup>
             {assets.map((asset, index) => (
               <Fragment key={asset.id}>
-                <Item className={assets.length - 1 === index ? 'pb-0' : 'pb-2.5'}>
-                  <ItemMedia>
-                    <Avatar>
-                      <AvatarImage src={asset.icon} className="grayscale" />
-                      <AvatarFallback>{asset.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                  </ItemMedia>
-                  <ItemContent className="gap-1">
-                    <ItemTitle>
-                      {asset.amount} {asset.symbol}
-                    </ItemTitle>
-                    <ItemDescription>{asset.name}</ItemDescription>
-                  </ItemContent>
-                  <ItemActions>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="font-medium tabular-nums">
-                        ${formatNumber(asset.usdValue)}
-                      </span>
-                      <div
-                        className={cn(
-                          'flex items-center gap-1 text-xs',
-                          asset.change24h >= 0 ? 'text-primary-400' : 'text-destructive',
-                        )}
-                      >
-                        {Math.abs(asset.change24h)}%
-                        <IconArrowUpRight
-                          className="size-3"
-                          style={{
-                            transform: asset.change24h < 0 ? 'rotate(90deg)' : undefined,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </ItemActions>
-                </Item>
+                <AssetListItem asset={asset} isLast={index === assets.length - 1} />
                 {index !== assets.length - 1 && <ItemSeparator />}
               </Fragment>
             ))}
