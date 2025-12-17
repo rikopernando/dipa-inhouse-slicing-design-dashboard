@@ -2,27 +2,23 @@
 
 import * as React from 'react';
 import {
-  IconCamera,
+  IconLayoutDashboard,
+  IconWallet,
+  IconArrowsExchange,
+  IconCoins,
+  IconChartLine,
+  IconNews,
+  IconBookmark,
   IconChartBar,
-  IconDashboard,
-  IconDatabase,
-  IconFileAi,
-  IconFileDescription,
-  IconFileWord,
-  IconFolder,
   IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
-  IconSettings,
-  IconUsers,
+  IconGift,
 } from '@tabler/icons-react';
 
-import { NavDocuments } from '@/components/nav-documents';
 import { NavMain } from '@/components/nav-main';
 import { NavSecondary } from '@/components/nav-secondary';
 import { NavUser } from '@/components/nav-user';
+import { NavWatchlist } from '@/components/nav-watchlist';
+import { NavPromo } from '@/components/nav-promo';
 import {
   Sidebar,
   SidebarContent,
@@ -36,117 +32,86 @@ import Image from 'next/image';
 
 const data = {
   user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
+    name: 'Giyu Tomizawa',
+    email: 'giyuuzw@mail.com',
+    avatar: '/avatars/Avatar.webp',
   },
   navMain: [
     {
       title: 'Dashboard',
       url: '#',
-      icon: IconDashboard,
+      icon: IconLayoutDashboard,
+      isActive: true,
     },
     {
-      title: 'Lifecycle',
+      title: 'My Assets',
       url: '#',
-      icon: IconListDetails,
+      icon: IconWallet,
+    },
+    {
+      title: 'Trade',
+      url: '#',
+      icon: IconArrowsExchange,
+    },
+    {
+      title: 'Staking',
+      url: '#',
+      icon: IconCoins,
+    },
+    {
+      title: 'Market',
+      url: '#',
+      icon: IconChartLine,
+    },
+    {
+      title: 'News & Trends',
+      url: '#',
+      icon: IconNews,
+    },
+    {
+      title: 'Watchlist',
+      url: '#',
+      icon: IconBookmark,
     },
     {
       title: 'Analytics',
       url: '#',
       icon: IconChartBar,
     },
-    {
-      title: 'Projects',
-      url: '#',
-      icon: IconFolder,
-    },
-    {
-      title: 'Team',
-      url: '#',
-      icon: IconUsers,
-    },
   ],
-  navClouds: [
+  watchlist: [
     {
-      title: 'Capture',
-      icon: IconCamera,
-      isActive: true,
-      url: '#',
-      items: [
-        {
-          title: 'Active Proposals',
-          url: '#',
-        },
-        {
-          title: 'Archived',
-          url: '#',
-        },
-      ],
+      name: 'Bitcoin',
+      symbol: 'BTC',
+      price: 63250.0,
+      change: 2.14,
+      icon: '/crypto-icons/btc.svg',
     },
     {
-      title: 'Proposal',
-      icon: IconFileDescription,
-      url: '#',
-      items: [
-        {
-          title: 'Active Proposals',
-          url: '#',
-        },
-        {
-          title: 'Archived',
-          url: '#',
-        },
-      ],
+      name: 'Ethereum',
+      symbol: 'ETH',
+      price: 3180.4,
+      change: -0.72,
+      icon: '/crypto-icons/eth.svg',
     },
     {
-      title: 'Prompts',
-      icon: IconFileAi,
-      url: '#',
-      items: [
-        {
-          title: 'Active Proposals',
-          url: '#',
-        },
-        {
-          title: 'Archived',
-          url: '#',
-        },
-      ],
+      name: 'Solana',
+      symbol: 'SOL',
+      price: 145.75,
+      change: 1.08,
+      icon: '/crypto-icons/sol.svg',
     },
   ],
   navSecondary: [
     {
-      title: 'Settings',
-      url: '#',
-      icon: IconSettings,
-    },
-    {
-      title: 'Get Help',
+      title: 'Help center',
       url: '#',
       icon: IconHelp,
     },
     {
-      title: 'Search',
+      title: 'Referral',
       url: '#',
-      icon: IconSearch,
-    },
-  ],
-  documents: [
-    {
-      name: 'Data Library',
-      url: '#',
-      icon: IconDatabase,
-    },
-    {
-      name: 'Reports',
-      url: '#',
-      icon: IconReport,
-    },
-    {
-      name: 'Word Assistant',
-      url: '#',
-      icon: IconFileWord,
+      icon: IconGift,
     },
   ],
 };
@@ -154,31 +119,32 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="mb-2">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:p-1.5!">
-              <a href="#" className="flex items-center p-0">
+              <a href="#" className="flex items-center gap-2 p-0">
                 <Image
                   alt="StableVault"
-                  className="mt-1 size-10!"
+                  className="mt-2 size-8"
                   width={32}
                   height={32}
                   src="/images/logo.svg"
                 />
-                <span className="text-lg">StableVault</span>
+                <span className="text-lg font-semibold">StableVault</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
+        <NavUser user={data.user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
+        <NavWatchlist items={data.watchlist} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavPromo />
       </SidebarFooter>
     </Sidebar>
   );
