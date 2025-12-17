@@ -7,9 +7,12 @@
   /* Brand Gradients - Primary Colors */
   --gradient-start: #8addc6;
   --gradient-end: #4fcba8;
+  --gradient-accent-start: #323941;
+  --gradient-accent-end: #2a3036;
 
   /* Custom color */
   --luxury-black-600: #2a3036;
+  --luxury-black-500: #323941;
   --grayscale-500: #677489;
 
   --background: #111316;
@@ -19,7 +22,7 @@
   --popover: #25292e;
   --popover-foreground: #fafafa;
   --primary: #2cc184;
-  --primary-foreground: #171717;
+  --primary-foreground: #111729;
   --secondary: #00c4bd;
   --secondary-foreground: #fafafa;
   --muted: #262626;
@@ -75,7 +78,7 @@
   --popover: #25292e;
   --popover-foreground: #fafafa;
   --primary: #2cc184;
-  --primary-foreground: #171717;
+  --primary-foreground: #111729;
   --secondary: #00c4bd;
   --secondary-foreground: #fafafa;
   --muted: #262626;
@@ -160,6 +163,7 @@
 
   /* Custom color */
   --color-luxury-black-600: var(--luxury-black-600);
+  --color-luxury-black-500: var(--luxury-black-500);
   --color-grayscale-500: var(--grayscale-500);
 
   --font-sans: var(--font-sans);
@@ -233,6 +237,14 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .bg-gradient-accent {
+    background: linear-gradient(
+      180deg,
+      var(--gradient-accent-start) 0%,
+      var(--gradient-accent-end) 100%
+    );
   }
 }
 

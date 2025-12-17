@@ -15,8 +15,6 @@ import { IconArrowsUpDown } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
@@ -25,7 +23,6 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { ExchangeRateDisplay } from '@/components/atoms/exchange-rate-display';
 import { TokenIcon } from '@/components/atoms/token-icon';
@@ -33,7 +30,16 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { formatNumber } from '@/lib/utils';
 import { availableTokens } from '@/lib/mock-data/tokens';
 import type { PortfolioDataPoint, PortfolioSummary, Token } from '@/types/dashboard';
-import { ChartCandlestick, ChartLine } from 'lucide-react';
+import {
+  Coins,
+  ArrowRightLeft,
+  ChartCandlestick,
+  ChartLine,
+  BanknoteArrowDown,
+  BanknoteArrowUp,
+} from 'lucide-react';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
 
 interface PortfolioWithQuickAccessProps {
   portfolioData: PortfolioDataPoint[];
@@ -124,7 +130,7 @@ export function PortfolioWithQuickAccess({
   };
 
   return (
-    <Card>
+    <Card className="relative bg-[url(/images/abstract/portfolio-gradient.svg)] bg-no-repeat">
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_387px]">
         {/* Left Side - Portfolio Chart */}
         <div className="flex flex-col">
@@ -204,7 +210,7 @@ export function PortfolioWithQuickAccess({
             </div>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={isMobile ? 250 : 350}>
+            <ResponsiveContainer width="100%" height={isMobile ? 250 : 290}>
               <LineChart data={chartData} margin={{ top: 0, right: 0, left: -32, bottom: 0 }}>
                 <CartesianGrid vertical={false} strokeDasharray="6 6" className="stroke-accent" />
                 <XAxis
@@ -301,105 +307,140 @@ export function PortfolioWithQuickAccess({
 
         {/* Right Side - Quick Access */}
         <div className="flex flex-col border-t lg:border-t-0">
-          <CardHeader>
-            <CardTitle>Quick Access</CardTitle>
-            <Tabs
+          <CardHeader className="gap-3">
+            <CardTitle className="text-sm font-medium">Quick Access</CardTitle>
+            <ToggleGroup
+              type="single"
               value={selectedTab}
-              onValueChange={(value) => setSelectedTab(value as typeof activeTab)}
+              spacing={1}
+              onValueChange={(value) => value && setSelectedTab(value as typeof activeTab)}
+              className="w-full justify-center"
             >
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="Swap">Swap</TabsTrigger>
-                <TabsTrigger value="Deposit">Deposit</TabsTrigger>
-                <TabsTrigger value="Withdraw">Withdraw</TabsTrigger>
-                <TabsTrigger value="Transfer">Transfer</TabsTrigger>
-              </TabsList>
-            </Tabs>
+              <ToggleGroupItem value="Swap" aria-label="Swap" size="xs">
+                <ArrowRightLeft />
+                Swap
+              </ToggleGroupItem>
+              <ToggleGroupItem value="Deposit" aria-label="Deposit" size="xs">
+                <Coins /> Deposit
+              </ToggleGroupItem>
+              <ToggleGroupItem value="Withdraw" aria-label="Withdraw" size="xs">
+                <BanknoteArrowDown />
+                Withdraw
+              </ToggleGroupItem>
+              <ToggleGroupItem value="Transfer" aria-label="Transfer" size="xs">
+                <BanknoteArrowUp />
+                Transfer
+              </ToggleGroupItem>
+            </ToggleGroup>
           </CardHeader>
-          <CardContent className="flex flex-col gap-4">
+          <CardContent className="mt-3 flex flex-col gap-4">
             {selectedTab === 'Swap' && (
               <>
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="from-token">You send</Label>
-                  <div className="flex gap-2">
-                    <Select value={fromToken.symbol} onValueChange={handleFromTokenChange}>
-                      <SelectTrigger className="w-[140px]">
-                        <SelectValue>
-                          <div className="flex items-center gap-2">
-                            <TokenIcon symbol={fromToken.symbol} icon={fromToken.icon} size="sm" />
-                            <span>{fromToken.symbol}</span>
-                          </div>
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {availableTokens.map((token) => (
-                          <SelectItem key={token.symbol} value={token.symbol}>
-                            <div className="flex items-center gap-2">
-                              <TokenIcon symbol={token.symbol} icon={token.icon} size="sm" />
-                              <span>{token.symbol}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Input
-                      id="from-amount"
-                      type="number"
-                      placeholder="0.00"
-                      value={fromAmount}
-                      onChange={(e) => setFromAmount(e.target.value)}
-                      className="flex-1"
+                <Card className="bg-input py-0">
+                  <CardContent className="px-0 py-3">
+                    <FieldGroup className="px-3">
+                      <Field>
+                        <FieldLabel htmlFor="send">You Send</FieldLabel>
+                        <InputGroup className="bg-accent border-luxury-black-500 h-11">
+                          <InputGroupInput
+                            placeholder="0.00"
+                            className="bg-accent"
+                            onChange={(e) => setFromAmount(e.target.value)}
+                          />
+                          <InputGroupAddon align="inline-end">
+                            <Select value={fromToken.symbol} onValueChange={handleFromTokenChange}>
+                              <SelectTrigger className="bg-input" size="xs">
+                                <SelectValue className="text-xs">
+                                  <div className="flex items-center gap-2">
+                                    <TokenIcon
+                                      symbol={fromToken.symbol}
+                                      icon={fromToken.icon}
+                                      size="xs"
+                                    />
+                                    <span>{fromToken.symbol}</span>
+                                  </div>
+                                </SelectValue>
+                              </SelectTrigger>
+                              <SelectContent>
+                                {availableTokens.map((token) => (
+                                  <SelectItem key={token.symbol} value={token.symbol}>
+                                    <div className="flex items-center gap-2">
+                                      <TokenIcon
+                                        symbol={token.symbol}
+                                        icon={token.icon}
+                                        size="sm"
+                                      />
+                                      <span>{token.symbol}</span>
+                                    </div>
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </InputGroupAddon>
+                        </InputGroup>
+                      </Field>
+                    </FieldGroup>
+
+                    <div className="relative my-8 flex flex-col justify-center">
+                      <Separator />
+                      <div className="bg-gradient-accent absolute left-1/2 flex size-10 -translate-x-1/2 items-center justify-center rounded-full border">
+                        <IconArrowsUpDown className="text-muted-foreground size-4" />
+                      </div>
+                    </div>
+
+                    <FieldGroup className="px-3">
+                      <Field>
+                        <FieldLabel htmlFor="receive">You&apos;ll receive</FieldLabel>
+                        <InputGroup className="bg-accent border-luxury-black-500 h-11">
+                          <InputGroupInput
+                            placeholder="0.00"
+                            className="bg-accent"
+                            onChange={(e) => setToAmount(e.target.value)}
+                          />
+                          <InputGroupAddon align="inline-end">
+                            <Select value={toToken.symbol} onValueChange={handleToTokenChange}>
+                              <SelectTrigger className="bg-input" size="xs">
+                                <SelectValue className="text-xs">
+                                  <div className="flex items-center gap-2">
+                                    <TokenIcon
+                                      symbol={toToken.symbol}
+                                      icon={toToken.icon}
+                                      size="xs"
+                                    />
+                                    <span>{toToken.symbol}</span>
+                                  </div>
+                                </SelectValue>
+                              </SelectTrigger>
+                              <SelectContent>
+                                {availableTokens.map((token) => (
+                                  <SelectItem key={token.symbol} value={token.symbol}>
+                                    <div className="flex items-center gap-2">
+                                      <TokenIcon
+                                        symbol={token.symbol}
+                                        icon={token.icon}
+                                        size="sm"
+                                      />
+                                      <span>{token.symbol}</span>
+                                    </div>
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </InputGroupAddon>
+                        </InputGroup>
+                      </Field>
+                    </FieldGroup>
+
+                    <ExchangeRateDisplay
+                      fromSymbol={fromToken.symbol}
+                      toSymbol={toToken.symbol}
+                      rate="1,000"
+                      className="mt-4 mb-2 px-3"
                     />
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
 
-                <div className="flex justify-center">
-                  <div className="bg-muted flex size-8 items-center justify-center rounded-full">
-                    <IconArrowsUpDown className="text-muted-foreground size-4" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="to-token">You&apos;ll receive</Label>
-                  <div className="flex gap-2">
-                    <Select value={toToken.symbol} onValueChange={handleToTokenChange}>
-                      <SelectTrigger className="w-[140px]">
-                        <SelectValue>
-                          <div className="flex items-center gap-2">
-                            <TokenIcon symbol={toToken.symbol} icon={toToken.icon} size="sm" />
-                            <span>{toToken.symbol}</span>
-                          </div>
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        {availableTokens.map((token) => (
-                          <SelectItem key={token.symbol} value={token.symbol}>
-                            <div className="flex items-center gap-2">
-                              <TokenIcon symbol={token.symbol} icon={token.icon} size="sm" />
-                              <span>{token.symbol}</span>
-                            </div>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Input
-                      id="to-amount"
-                      type="number"
-                      placeholder="0.00"
-                      value={toAmount}
-                      onChange={(e) => setToAmount(e.target.value)}
-                      className="flex-1"
-                    />
-                  </div>
-                </div>
-
-                <ExchangeRateDisplay
-                  fromSymbol={fromToken.symbol}
-                  toSymbol={toToken.symbol}
-                  rate="1,000"
-                  className="py-2"
-                />
-
-                <Button onClick={handlePreview} size="lg" className="w-full">
+                <Button onClick={handlePreview} className="w-full">
                   Preview
                 </Button>
               </>

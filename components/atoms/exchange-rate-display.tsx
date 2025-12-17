@@ -14,7 +14,7 @@ export function ExchangeRateDisplay({
   className,
 }: ExchangeRateDisplayProps) {
   return (
-    <div className={cn('flex items-center justify-center gap-1 text-sm text-muted-foreground', className)}>
+    <div className={cn('text-sm leading-none', className)}>
       <span>
         1 {fromSymbol} = {rate} {toSymbol}
       </span>
