@@ -14,7 +14,6 @@ interface PortfolioChartHeaderProps {
   onTimeRangeChange: (value: TimeRange) => void;
   typeChart: TypeChart;
   onTypeChartChange: (value: TypeChart) => void;
-  isMobile?: boolean;
   className?: string;
 }
 
@@ -24,7 +23,6 @@ export const PortfolioChartHeader = memo(function PortfolioChartHeader({
   onTimeRangeChange,
   typeChart,
   onTypeChartChange,
-  isMobile = false,
   className,
 }: PortfolioChartHeaderProps) {
   const handleTypeChartChange = useCallback(
@@ -38,7 +36,7 @@ export const PortfolioChartHeader = memo(function PortfolioChartHeader({
 
   return (
     <CardHeader className={`mb-8 ${className || ''}`}>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <PortfolioSummaryDisplay
           totalValue={summary.totalValue}
           percentageChange={summary.percentageChange}
@@ -46,27 +44,23 @@ export const PortfolioChartHeader = memo(function PortfolioChartHeader({
           totalChangeLabel={summary.totalChangeLabel}
           className="flex flex-col gap-1"
         />
-        {!isMobile ? (
-          <div className="flex gap-2">
-            <TimeRangeSelector value={timeRange} onChange={onTimeRangeChange} isMobile={false} />
-            <ToggleGroup
-              type="single"
-              value={typeChart}
-              spacing={1}
-              onValueChange={handleTypeChartChange}
-              className="justify-start"
-            >
-              <ToggleGroupItem value="LINE" aria-label="LINE" size="xs">
-                <ChartLine />
-              </ToggleGroupItem>
-              <ToggleGroupItem value="CANDLESTICK" aria-label="CANDLESTICK" size="xs">
-                <ChartCandlestick />
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
-        ) : (
-          <TimeRangeSelector value={timeRange} onChange={onTimeRangeChange} isMobile={true} />
-        )}
+        <div className="flex gap-2">
+          <TimeRangeSelector value={timeRange} onChange={onTimeRangeChange} isMobile={false} />
+          <ToggleGroup
+            type="single"
+            value={typeChart}
+            spacing={1}
+            onValueChange={handleTypeChartChange}
+            className="justify-start"
+          >
+            <ToggleGroupItem value="LINE" aria-label="LINE" size="xs">
+              <ChartLine />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="CANDLESTICK" aria-label="CANDLESTICK" size="xs">
+              <ChartCandlestick />
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
       </div>
     </CardHeader>
   );

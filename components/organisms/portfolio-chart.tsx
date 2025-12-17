@@ -81,14 +81,13 @@ export const PortfolioChart = memo(function PortfolioChart({
   }, []);
 
   return (
-    <div className={`flex flex-col ${className || ''}`}>
+    <div className={`mb-4 flex flex-col lg:mb-0 ${className || ''}`}>
       <PortfolioChartHeader
         summary={summary}
         timeRange={timeRange}
         onTimeRangeChange={handleTimeRangeChange}
         typeChart={typeChart}
         onTypeChartChange={handleTypeChartChange}
-        isMobile={isMobile}
       />
       <CardContent>
         <ResponsiveContainer width="100%" height={isMobile ? 250 : 290}>

@@ -18,7 +18,7 @@ export const CoinNameCell = memo(function CoinNameCell({
 }: CoinNameCellProps) {
   return (
     <div className={`flex items-center gap-2 ${className || ''}`}>
-      <TokenIcon symbol={symbol} icon={icon} size="sm" />
+      <TokenIcon symbol={symbol} icon={icon} size="lg" />
       <div className="flex flex-col">
         <span className="font-medium">{name}</span>
         <span className="text-muted-foreground text-xs">{symbol}</span>

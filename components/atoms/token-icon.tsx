@@ -31,7 +31,7 @@ export function TokenIcon({ symbol, icon, size = 'md', className }: TokenIconPro
           size === 'xs' && 'size-4 text-xs',
           size === 'sm' && 'size-6 text-xs',
           size === 'md' && 'size-8 text-sm',
-          size === 'lg' && 'size-10 text-base',
+          size === 'lg' && 'size-9 text-base',
           className,
         )}
       >

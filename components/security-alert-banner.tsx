@@ -16,10 +16,10 @@ export function SecurityAlertBanner({
   onEnableSecurity,
 }: SecurityAlertBannerProps) {
   return (
-    <Card className="relative py-0">
+    <Card className="relative lg:py-0">
       <div className="absolute top-0 left-1 h-full w-25 bg-[url(/images/abstract/dots.svg)] bg-cover bg-center bg-no-repeat" />
       <div className="absolute top-0 right-0 h-full w-45 bg-[url(/images/abstract/pattern.svg)] bg-cover bg-center bg-no-repeat" />
-      <CardContent className="flex flex-col gap-4 pl-0 md:flex-row md:items-center md:justify-between">
+      <CardContent className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between lg:pl-0">
         <div className="flex items-start gap-3 md:items-center">
           <Image
             src="/images/icons/lock.svg"

@@ -45,9 +45,9 @@ export default function Page() {
             />
 
             {/* 2-Column Layout */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_387px]">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-12">
               {/* Left Column - Main Content */}
-              <div className="flex flex-col gap-4">
+              <div className="col-span-1 flex flex-col gap-4 lg:col-span-7">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
                   <YourAssets assets={userAssets} />
                   <PortfolioBreakdown breakdown={portfolioBreakdown} />
@@ -56,7 +56,7 @@ export default function Page() {
               </div>
 
               {/* Right Column - Sidebar Widgets */}
-              <div className="flex flex-col gap-4">
+              <div className="col-span-1 flex flex-col gap-4 lg:col-span-5">
                 <MyStaking myStakingItems={myStakingItems} stakingItems={stakingItems} />
                 {/* Full-width Community Feed */}
                 <CommunityFeed posts={communityPosts} />

@@ -35,7 +35,7 @@ export const QuickAccessPanel = memo(function QuickAccessPanel({
 
   return (
     <div className={`flex flex-col border-t lg:border-t-0 ${className || ''}`}>
-      <CardHeader className="gap-3">
+      <CardHeader className="gap-3 pt-4 lg:pt-0">
         <CardTitle className="text-sm font-medium">Quick Access</CardTitle>
         <ToggleGroup
           type="single"
