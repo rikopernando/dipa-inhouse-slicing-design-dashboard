@@ -33,7 +33,7 @@ export default function Page() {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+          <div className="@container/main flex flex-1 flex-col gap-4 p-4 lg:p-6">
             {/* Full-width Security Alert */}
             <SecurityAlertBanner {...securityAlertData} />
 
@@ -45,22 +45,23 @@ export default function Page() {
             />
 
             {/* 2-Column Layout */}
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_400px] lg:gap-6">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_400px]">
               {/* Left Column - Main Content */}
-              <div className="flex flex-col gap-4 lg:gap-6">
-                <YourAssets assets={userAssets} />
+              <div className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                  <YourAssets assets={userAssets} />
+                  <PortfolioBreakdown breakdown={portfolioBreakdown} />
+                </div>
                 <MarketTable coins={marketCoins} />
               </div>
 
               {/* Right Column - Sidebar Widgets */}
-              <div className="flex flex-col gap-4 lg:gap-6">
-                <PortfolioBreakdown breakdown={portfolioBreakdown} />
+              <div className="flex flex-col gap-4">
                 <MyStaking stakingItems={stakingItems} />
+                {/* Full-width Community Feed */}
+                <CommunityFeed posts={communityPosts} />
               </div>
             </div>
-
-            {/* Full-width Community Feed */}
-            <CommunityFeed posts={communityPosts} />
           </div>
         </div>
       </SidebarInset>

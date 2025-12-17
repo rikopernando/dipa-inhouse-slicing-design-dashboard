@@ -14,6 +14,8 @@
   --luxury-black-600: #2a3036;
   --luxury-black-500: #323941;
   --grayscale-500: #677489;
+  --grayscale-300: #cdd5e0;
+  --primary-400: #4fcba8;
 
   --background: #111316;
   --foreground: #fafafa;
@@ -29,7 +31,7 @@
   --muted-foreground: #97a3b6;
   --accent: #2a3036;
   --accent-foreground: #fafafa;
-  --destructive: #ff6467;
+  --destructive: #f14e6d;
   --destructive-foreground: #fafafa;
   --border: #2a3036;
   --input: #21262b;
@@ -85,7 +87,7 @@
   --muted-foreground: #97a3b6;
   --accent: #2a3036;
   --accent-foreground: #fafafa;
-  --destructive: #ff6467;
+  --destructive: #f14e6d;
   --destructive-foreground: #fafafa;
   --border: #2a3036;
   --input: #21262b;
@@ -161,11 +163,6 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Custom color */
-  --color-luxury-black-600: var(--luxury-black-600);
-  --color-luxury-black-500: var(--luxury-black-500);
-  --color-grayscale-500: var(--grayscale-500);
-
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
@@ -183,6 +180,13 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+
+  /* Custom color */
+  --color-luxury-black-600: var(--luxury-black-600);
+  --color-luxury-black-500: var(--luxury-black-500);
+  --color-grayscale-500: var(--grayscale-500);
+  --color-grayscale-300: var(--grayscale-300);
+  --color-primary-400: var(--primary-400);
 }
 
 @layer utilities {

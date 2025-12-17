@@ -11,7 +11,7 @@ interface PortfolioBreakdownProps {
 
 export function PortfolioBreakdown({ breakdown }: PortfolioBreakdownProps) {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Portfolio Breakdown</CardTitle>
       </CardHeader>
