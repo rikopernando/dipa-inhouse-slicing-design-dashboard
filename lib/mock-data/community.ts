@@ -48,7 +48,7 @@ export const communityPosts: CommunityPost[] = [
       avatar: '/avatars/emma.jpg',
     },
     content:
-      'Diversification is key. My portfolio: 50% BTC, 30% ETH, 20% altcoins. What\'s your strategy?',
+      "Diversification is key. My portfolio: 50% BTC, 30% ETH, 20% altcoins. What's your strategy?",
     likes: 89,
     comments: 23,
     timestamp: '8h ago',

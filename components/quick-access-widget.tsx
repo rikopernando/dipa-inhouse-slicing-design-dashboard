@@ -9,7 +9,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { availableTokens } from '@/lib/mock-data/tokens';
 import type { Token } from '@/types/dashboard';
@@ -54,7 +60,10 @@ export function QuickAccessWidget({ activeTab = 'Swap', onPreview }: QuickAccess
     <Card>
       <CardHeader>
         <CardTitle>Quick Access</CardTitle>
-        <Tabs value={selectedTab} onValueChange={(value) => setSelectedTab(value as typeof activeTab)}>
+        <Tabs
+          value={selectedTab}
+          onValueChange={(value) => setSelectedTab(value as typeof activeTab)}
+        >
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="Swap">Swap</TabsTrigger>
             <TabsTrigger value="Deposit">Deposit</TabsTrigger>
@@ -101,13 +110,13 @@ export function QuickAccessWidget({ activeTab = 'Swap', onPreview }: QuickAccess
             </div>
 
             <div className="flex justify-center">
-              <div className="flex size-8 items-center justify-center rounded-full bg-muted">
-                <IconArrowsUpDown className="size-4 text-muted-foreground" />
+              <div className="bg-muted flex size-8 items-center justify-center rounded-full">
+                <IconArrowsUpDown className="text-muted-foreground size-4" />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <Label htmlFor="to-token">You'll receive</Label>
+              <Label htmlFor="to-token">You&apos;ll receive</Label>
               <div className="flex gap-2">
                 <Select value={toToken.symbol} onValueChange={handleToTokenChange}>
                   <SelectTrigger className="w-[140px]">
@@ -153,8 +162,8 @@ export function QuickAccessWidget({ activeTab = 'Swap', onPreview }: QuickAccess
           </>
         )}
         {selectedTab !== 'Swap' && (
-          <div className="flex min-h-[300px] items-center justify-center rounded-lg border border-dashed border-border">
-            <p className="text-sm text-muted-foreground">{selectedTab} coming soon</p>
+          <div className="border-border flex min-h-[300px] items-center justify-center rounded-lg border border-dashed">
+            <p className="text-muted-foreground text-sm">{selectedTab} coming soon</p>
           </div>
         )}
       </CardContent>

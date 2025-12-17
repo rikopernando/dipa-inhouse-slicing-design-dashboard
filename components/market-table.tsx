@@ -1,4 +1,5 @@
 'use client';
+'use no memo';
 
 import { useState } from 'react';
 import {
@@ -95,6 +96,7 @@ export function MarketTable({ coins }: MarketTableProps) {
     },
   ];
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data: coins,
     columns,
